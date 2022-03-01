@@ -15,8 +15,6 @@ import { FindCardSetsUseCase } from './useCase/findCardSets/FindCardSetsUseCase'
       useClass: CardsSetsRepository,
     },
   ],
-  controllers: [
-    CardsSetsController
-  ],
+  controllers: [CardsSetsController],
 })
 export class CardSet {}

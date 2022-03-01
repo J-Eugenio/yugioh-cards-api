@@ -15,8 +15,6 @@ import { FindSetsUseCase } from './useCase/findSets/FindSetsUseCase';
       useClass: SetsRepository,
     },
   ],
-  controllers: [
-    SetsController
-  ],
+  controllers: [SetsController],
 })
 export class SetModule {}
