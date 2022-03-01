@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ICreateCardDTO } from 'src/modules/card/dtos/ICreateCardDTO';
+import { ICreateCardSetsDTO } from 'src/modules/card_set/dtos/ICreateCardSetsDTO';
+import { IUpdateCardSetsDTO } from 'src/modules/card_set/dtos/IUpdateCardSetsDTO';
 import { ICardsSetsRepository } from 'src/modules/card_set/repositories/ICardsSetsRepository';
 import { EntityManager, MoreThan, Repository } from 'typeorm';
 import { CardSets } from '../entities/CardSets';
@@ -14,6 +16,31 @@ class CardsSetsRepository implements ICardsSetsRepository {
 
   public async findAll() {
     return await this.ormRepository.find();
+  }
+
+
+  public async findByCode(set_code: string){
+    return await this.ormRepository.query(
+      `
+        SELECT * FROM card_sets cs WHERE cs.set_code = $1::TEXT
+      `, [set_code]
+    );
+  }
+
+  public async createCardSet(data: ICreateCardSetsDTO): Promise<CardSets> {
+    const card_set = this.ormRepository.create(data);
+
+    await this.ormRepository.save(card_set);
+    
+    return card_set;
+  }
+
+  public async updateCardSet(data: IUpdateCardSetsDTO): Promise<CardSets> {
+    const card_set = this.ormRepository.create(data);
+
+    await this.ormRepository.save(card_set);
+    
+    return card_set;
   }
 
 }

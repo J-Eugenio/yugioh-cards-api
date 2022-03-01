@@ -16,17 +16,6 @@ class CardRepository implements ICardRepository {
     return await this.ormRepository.find();
   }
 
-  public async create(data: ICreateCardDTO): Promise<string> {
-    const { id, ...res } = this.ormRepository.create(data);
-
-    await this.ormRepository.save({
-      id: data.id,
-      ...res,
-    });
-    return `ID: ${data.id} Carta: ${
-      res.name_pt ? res.name_pt : res.name || 'Sem Nome' + data.id
-    } importada com sucesso!!`;
-  }
 }
 
 export { CardRepository };
