@@ -1,5 +1,4 @@
 import { BadRequestException, Inject, NotFoundException } from "@nestjs/common";
-import { ICreateCardSetsDTO } from "../../dtos/ICreateCardSetsDTO";
 import { IUpdateCardSetsDTO } from "../../dtos/IUpdateCardSetsDTO";
 import { CardSets } from "../../infra/typeorm/entities/CardSets";
 import { ICardsSetsRepository } from "../../repositories/ICardsSetsRepository";
@@ -16,7 +15,7 @@ class UpdateCardSetUseCase {
     const check_exists_product = await this.cardsSetsRepository.findByCode(data.set_code);
 
     if (!check_exists_product) {
-      throw new BadRequestException("Esse produto não está cadastrado!");
+      throw new BadRequestException("Esse Card Set não está cadastrado!");
     }
 
     const product = await this.cardsSetsRepository.updateCardSet(data);

@@ -4,6 +4,7 @@ import { CardsSetsController } from './infra/http/CardsSetsController';
 import { CardSets } from './infra/typeorm/entities/CardSets';
 import { CardsSetsRepository } from './infra/typeorm/repositories/CardsSetsRepository';
 import { CreateCardSetUseCase } from './useCase/createCardSet/CreateCardSetUseCase';
+import { FindBySetCodeUseCase } from './useCase/findBySetCode/FindBySetCodeUseCase';
 import { FindCardSetsUseCase } from './useCase/findCardSets/FindCardSetsUseCase';
 import { UpdateCardSetUseCase } from './useCase/updateCardSet/UpdateCardSetUseCase';
 
@@ -13,6 +14,7 @@ import { UpdateCardSetUseCase } from './useCase/updateCardSet/UpdateCardSetUseCa
     FindCardSetsUseCase,
     CreateCardSetUseCase,
     UpdateCardSetUseCase,
+    FindBySetCodeUseCase,
     {
       provide: 'CardsSetsRepository',
       inject: [CardsSetsRepository],

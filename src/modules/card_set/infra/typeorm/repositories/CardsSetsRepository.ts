@@ -18,13 +18,14 @@ class CardsSetsRepository implements ICardsSetsRepository {
     return await this.ormRepository.find();
   }
 
+  
 
   public async findByCode(set_code: string){
-    return await this.ormRepository.query(
-      `
-        SELECT * FROM card_sets cs WHERE cs.set_code = $1::TEXT
-      `, [set_code]
-    );
+    return await this.ormRepository.findOne({
+      where: {
+        set_code
+      },
+    })
   }
 
   public async createCardSet(data: ICreateCardSetsDTO): Promise<CardSets> {

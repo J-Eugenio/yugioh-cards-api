@@ -15,7 +15,7 @@ class CreateCardSetUseCase {
     const check_exists_product = await this.cardsSetsRepository.findByCode(data.set_code);
 
     if (!check_exists_product) {
-      throw new BadRequestException("Esse produto já está cadastrado!");
+      throw new BadRequestException("Esse Card Set já está cadastrado!");
     }
 
     const product = await this.cardsSetsRepository.createCardSet(data);
