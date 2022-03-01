@@ -21,8 +21,6 @@ import { UpdateCardSetUseCase } from './useCase/updateCardSet/UpdateCardSetUseCa
       useClass: CardsSetsRepository,
     },
   ],
-  controllers: [
-    CardsSetsController
-  ],
+  controllers: [CardsSetsController],
 })
 export class CardSet {}

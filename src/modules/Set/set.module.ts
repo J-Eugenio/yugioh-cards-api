@@ -21,8 +21,6 @@ import { UpdateSetUseCase } from './useCase/updateSet/UpdateSetUseCase';
       useClass: SetsRepository,
     },
   ],
-  controllers: [
-    SetsController
-  ],
+  controllers: [SetsController],
 })
 export class SetModule {}
