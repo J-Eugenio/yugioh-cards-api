@@ -1,9 +1,20 @@
 <p align="center">
-  <a href="https://www.pngkit.com/view/u2q8r5r5u2o0t4i1_yugioh-logo-yu-gi-oh-png/" target="_blank">Yugioh-logo - Yu Gi Oh Png @pngkit.com</a>
+  <a href="https://www.pngkit.com/view/u2q8r5r5u2o0t4i1_yugioh-logo-yu-gi-oh-png/" target="_blank">
+    <img src="https://www.pngkit.com/view/u2q8r5r5u2o0t4i1_yugioh-logo-yu-gi-oh-png/" width="320" alt="Yugioh Logo" /> 
+  </a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<strong> Server 👨‍🏭 </strong>
+  
+  <img alt="NodeJS" src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
+  <img alt="NestJS" src="https://img.shields.io/badge/nestjs%20-%23E0234E.svg?&style=for-the-badge&logo=nestjs&logoColor=white" />
+<br />
+<br />
+
+<strong> Web 💻 </strong>
+
+  <img alt="Vue.js" src="https://img.shields.io/badge/vuejs%20-%2335495e.svg?&style=for-the-badge&logo=vue.js&logoColor=%234FC08D"/>
+  <img alt="NuxtJS" src="https://img.shields.io/badge/NuxtJS-2F495E.svg?&style=for-the-badge&logo=nuxt.js&logoColor=white"/>
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
