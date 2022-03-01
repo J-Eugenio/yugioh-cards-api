@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Card } from 'src/modules/card/infra/typeorm/entities/Card';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'card_sets',
@@ -36,4 +43,10 @@ export class CardSets {
     nullable: false,
   })
   set_rarity_code: string;
+
+  //Relacionamentos
+
+  @ManyToOne(() => Card, (card) => card.card_sets)
+  @JoinColumn({ name: 'card_id' })
+  card: Card;
 }

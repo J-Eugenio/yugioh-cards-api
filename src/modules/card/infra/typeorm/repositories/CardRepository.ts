@@ -45,7 +45,7 @@ class CardRepository implements ICardRepository {
     return card;
 =======
     return await this.ormRepository.find({
-      relations: ['images'],
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
     });
 >>>>>>> 24d3003f83327fe6cf3f76b8ad4486ba7fa20938
   }
