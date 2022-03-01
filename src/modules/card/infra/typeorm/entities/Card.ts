@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Images } from 'src/modules/Image/infra/typeorm/entities/Images';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity({
   name: 'cards',
@@ -66,6 +67,10 @@ class Card {
     nullable: true,
   })
   attribute?: string;
+
+  //Relacionamentos
+  @OneToMany(() => Images, (images) => images.card)
+  images: Images[];
 }
 
 export { Card };

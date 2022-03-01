@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Card } from 'src/modules/card/infra/typeorm/entities/Card';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'images',
@@ -24,4 +31,9 @@ export class Images {
     nullable: false,
   })
   name: string;
+
+  //Relacionamentos
+  @ManyToOne(() => Card, (card) => card.images)
+  @JoinColumn({ name: 'card_id' })
+  card: Card;
 }
