@@ -13,7 +13,7 @@ class CardRepository implements ICardRepository {
 
   public async findAll() {
     return await this.ormRepository.find({
-      relations: ['images'],
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
     });
   }
 }
