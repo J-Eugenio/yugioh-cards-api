@@ -18,21 +18,19 @@ class CardsSetsRepository implements ICardsSetsRepository {
     return await this.ormRepository.find();
   }
 
-  
-
-  public async findByCode(set_code: string){
+  public async findByCode(set_code: string) {
     return await this.ormRepository.findOne({
       where: {
-        set_code
+        set_code,
       },
-    })
+    });
   }
 
   public async createCardSet(data: ICreateCardSetsDTO): Promise<CardSets> {
     const card_set = this.ormRepository.create(data);
 
     await this.ormRepository.save(card_set);
-    
+
     return card_set;
   }
 
@@ -40,10 +38,9 @@ class CardsSetsRepository implements ICardsSetsRepository {
     const card_set = this.ormRepository.create(data);
 
     await this.ormRepository.save(card_set);
-    
+
     return card_set;
   }
-
 }
 
 export { CardsSetsRepository };
