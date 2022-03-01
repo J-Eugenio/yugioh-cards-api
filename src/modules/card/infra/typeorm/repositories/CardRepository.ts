@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ICreateCardDTO } from 'src/modules/card/dtos/ICreateCardDTO';
 import { ICardRepository } from 'src/modules/card/repositories/ICardRepository';
-import { EntityManager, MoreThan, Repository } from 'typeorm';
+import { EntityManager, Repository } from 'typeorm';
 import { Card } from '../entities/Card';
 
 @Injectable()
@@ -13,7 +12,9 @@ class CardRepository implements ICardRepository {
   }
 
   public async findAll() {
-    return await this.ormRepository.find();
+    return await this.ormRepository.find({
+      relations: ['images'],
+    });
   }
 }
 
