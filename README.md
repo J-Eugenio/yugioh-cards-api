@@ -15,7 +15,7 @@
 
   
   <div style="display: flex; align-items: center; justify-content: center;">
-    <div style="margin-right: 1rem;">
+    <div>
         <div><strong> Server 👨‍🏭 </strong></div>
         <br>
         <div>
@@ -23,7 +23,8 @@
             <img alt="NestJS" src="https://img.shields.io/badge/nestjs%20-%23E0234E.svg?&style=for-the-badge&logo=nestjs&logoColor=white" />
         </div>
     </div>
-    <div style="margin-left: 1rem;">
+    <br>
+    <div>
         <div><strong> Web 💻 </strong></div>
         <br>
         <div>
@@ -32,7 +33,6 @@
         </div>
     </div>
   </div>
-
   <br>
   <br>
   <div>
@@ -45,7 +45,6 @@
         <br>
         <strong>With this platform you register to generate a key, and with it access the api, to integrate into your systems easily. </strong>
     </div>
-
     <div style="margin-top: 2rem;">
         <strong style="font-size: 20px;">## 🖥 Developers</strong>
         <br>
@@ -67,11 +66,9 @@
             [<img src="https://img.shields.io/badge/Github-black?&style=for-the-badge&logo=Github&logoColor=white&theme=dark">](https://github.com/carloscenci)   
             </sub>
     </div>
-
     <div style="margin-top: 2rem;">
         <strong style="font-size: 20px;">## 🖥 Website</strong>
     </div>
-   
   </div>
 
   
