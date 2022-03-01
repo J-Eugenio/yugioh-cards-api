@@ -19,19 +19,20 @@ class CardRepository implements ICardRepository {
     });
   }
 
-  public async findById(id: number){
+  public async findById(id: number) {
     return await this.ormRepository.findOne({
       where: {
-        id
+        id,
       },
-    })
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
   }
 
   public async createCard(data: ICreateCardDTO): Promise<Card> {
     const card = this.ormRepository.create(data);
 
     await this.ormRepository.save(card);
-    
+
     return card;
   }
 
@@ -39,10 +40,9 @@ class CardRepository implements ICardRepository {
     const card = this.ormRepository.create(data);
 
     await this.ormRepository.save(card);
-    
+
     return card;
   }
-
 }
 
 export { CardRepository };
