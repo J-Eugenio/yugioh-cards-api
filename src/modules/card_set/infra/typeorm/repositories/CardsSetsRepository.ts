@@ -28,6 +28,14 @@ class CardsSetsRepository implements ICardsSetsRepository {
     })
   }
 
+  public async findBySetId(set_id: number){
+    return await this.ormRepository.find({
+      where: {
+        set_id
+      },
+    })
+  }
+
   public async createCardSet(data: ICreateCardSetsDTO): Promise<CardSets> {
     const card_set = this.ormRepository.create(data);
 
