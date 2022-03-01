@@ -12,15 +12,15 @@ class UpdateCardSetUseCase {
 
   public async execute(data: IUpdateCardSetsDTO): Promise<CardSets> {
     // Verificação para existência de um produto
-    const check_exists_product = await this.cardsSetsRepository.findByCode(data.set_code);
+    const check_exists_card = await this.cardsSetsRepository.findByCode(data.set_code);
 
-    if (!check_exists_product) {
+    if (!check_exists_card) {
       throw new BadRequestException("Esse Card Set não está cadastrado!");
     }
 
-    const product = await this.cardsSetsRepository.updateCardSet(data);
+    const card = await this.cardsSetsRepository.updateCardSet(data);
 
-    return product;
+    return card;
   }
 }
 

@@ -12,15 +12,15 @@ class CreateCardSetUseCase {
 
   public async execute(data: ICreateCardSetsDTO): Promise<CardSets> {
     // Verificação para existência de um produto
-    const check_exists_product = await this.cardsSetsRepository.findByCode(data.set_code);
+    const check_exists_card = await this.cardsSetsRepository.findByCode(data.set_code);
 
-    if (!check_exists_product) {
+    if (!check_exists_card) {
       throw new BadRequestException("Esse Card Set já está cadastrado!");
     }
 
-    const product = await this.cardsSetsRepository.createCardSet(data);
+    const card = await this.cardsSetsRepository.createCardSet(data);
 
-    return product;
+    return card;
   }
 }
 

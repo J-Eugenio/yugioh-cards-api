@@ -29,14 +29,14 @@ export class RaceController {
   }
 
   @Post()
-  public async createType(
+  public async createRace(
     @Body() data : ICreateRaceDTO
   ): Promise<Race> {
     return this.createRaceUseCase.execute(data);
   }
 
   @Put()
-  public async updateType(
+  public async updateRace(
     @Body() data : IUpdateRaceDTO
   ): Promise<Race> {
     return this.updateRaceUseCase.execute(data);
