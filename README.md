@@ -23,7 +23,6 @@
             <img alt="NestJS" src="https://img.shields.io/badge/nestjs%20-%23E0234E.svg?&style=for-the-badge&logo=nestjs&logoColor=white" />
         </div>
     </div>
-
     <div style="margin-left: 1rem;">
         <div><strong> Web 💻 </strong></div>
         <br>
