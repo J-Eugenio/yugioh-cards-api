@@ -14,7 +14,9 @@ class CardRepository implements ICardRepository {
   }
 
   public async findAll() {
-    return await this.ormRepository.find();
+    return await this.ormRepository.find({
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
   }
 
   public async findById(id: number){

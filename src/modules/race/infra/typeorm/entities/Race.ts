@@ -1,3 +1,4 @@
+import { Card } from 'src/modules/card/infra/typeorm/entities/Card';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
@@ -12,4 +13,6 @@ export class Race {
     nullable: false,
   })
   name: string;
+
+  card: Card;
 }
