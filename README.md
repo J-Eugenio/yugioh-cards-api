@@ -52,29 +52,31 @@
         <strong style="font-size: 20px;">## 🖥 Developers</strong>
         <br>
         <br>
-        <div style="margin-left: 1rem; font-size: 18px;"><strong>### José Eugênio dos Santos</strong></div>
+        <div style="margin-left: 2rem; font-size: 18px;"><span>- José Eugênio dos Santos</span></div>
         <br>
-        <sub style="margin-left: 1rem;">
-        <a  style="margin-left: 1rem;" href="https://www.linkedin.com/in/j-eugenio/" target="_blank">
+        <sub style="margin-left: 2rem;">
+        <a  style="margin-left: 2rem;" href="https://www.linkedin.com/in/j-eugenio/" target="_blank">
             <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&theme=dark" />
         </a> 
-        <a  style="margin-left: 1rem;" href="https://github.com/J-Eugenio" target="_blank">
+        <a  style="margin-left: 2rem;" href="https://github.com/J-Eugenio" target="_blank">
             <img src="https://img.shields.io/badge/Github-black?&style=for-the-badge&logo=Github&logoColor=white&theme=dark">
         </a>
         </sub>
         <br>
         <br>
-        <div style="margin-left: 1rem; font-size: 18px;"><strong>### Carlos Cenci Estevam</strong></div>
+        <div style="margin-left: 2rem; font-size: 18px;"><span>- Carlos Cenci Estevam</span></div>
         <br>
-        <sub  style="margin-left: 1rem;">
-            <a style="margin-left: 1rem;" href="https://www.linkedin.com/in/carlos-cenci-5771921b1/" target="_blank">
+        <sub  style="margin-left: 2rem;">
+            <a style="margin-left: 2rem;" href="https://www.linkedin.com/in/carlos-cenci-5771921b1/" target="_blank">
                 <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&theme=dark" />
             </a> 
-            <a  style="margin-left: 1rem;" href="https://github.com/carloscenci" target="_blank">
+            <a  style="margin-left: 2rem;" href="https://github.com/carloscenci" target="_blank">
                 <img src="https://img.shields.io/badge/Github-black?&style=for-the-badge&logo=Github&logoColor=white&theme=dark">
             </a> 
         </sub>
     </div>
+    <br>
+    <br>
     <div style="margin-top: 2rem;">
         <strong style="font-size: 20px;">## 🖥 Website</strong>
     </div>
