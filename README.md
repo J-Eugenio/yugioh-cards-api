@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="https://www.pngkit.com/view/u2q8r5r5u2o0t4i1_yugioh-logo-yu-gi-oh-png/" target="_blank">Yugioh-logo - Yu Gi Oh Png @pngkit.com</a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
