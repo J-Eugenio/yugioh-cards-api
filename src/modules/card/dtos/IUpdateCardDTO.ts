@@ -1,5 +1,5 @@
-export class ICreateCardDTO {
-  // id: number;
+export class IUpdateCardDTO {
+  id: number;
   name: string;
   name_pt: string;
   type?: number;

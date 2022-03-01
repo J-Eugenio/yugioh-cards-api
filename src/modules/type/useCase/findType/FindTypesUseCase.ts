@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ITypesRepository } from '../repositories/ITypesRepository';
+import { ITypesRepository } from '../../repositories/ITypesRepository';
 
 @Injectable()
 export class FindTypesUseCase {
