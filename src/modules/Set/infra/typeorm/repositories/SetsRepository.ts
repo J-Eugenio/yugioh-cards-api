@@ -14,22 +14,24 @@ class SetsRepository implements ISetsRepository {
   }
 
   public async findAll() {
-    return await this.ormRepository.find();
+    return await this.ormRepository.find({
+      relations: ['cardSets', 'cardSets.card'],
+    });
   }
 
-  public async findById(id: number){
+  public async findById(id: number) {
     return await this.ormRepository.findOne({
       where: {
-        id
+        id,
       },
-    })
+    });
   }
 
   public async createSet(data: ICreateSetsDTO): Promise<Set> {
     const set = this.ormRepository.create(data);
 
     await this.ormRepository.save(set);
-    
+
     return set;
   }
 
@@ -37,10 +39,9 @@ class SetsRepository implements ISetsRepository {
     const set = this.ormRepository.create(data);
 
     await this.ormRepository.save(set);
-    
+
     return set;
   }
-
 }
 
 export { SetsRepository };

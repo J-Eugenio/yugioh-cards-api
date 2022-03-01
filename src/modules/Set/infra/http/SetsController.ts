@@ -14,7 +14,7 @@ export class SetsController {
     private readonly findSetByIdUseCase: FindSetByIdUseCase,
     private readonly createSetUseCase: CreateSetUseCase,
     private readonly updateSetUseCase: UpdateSetUseCase,
-    ) {}
+  ) {}
 
   @Get()
   public async findAll(): Promise<Set[]> {
@@ -22,23 +22,17 @@ export class SetsController {
   }
 
   @Get('/:id')
-  public async findById(
-    @Param('id') id: number,
-  ): Promise<Set> {
+  public async findById(@Param('id') id: number): Promise<Set> {
     return this.findSetByIdUseCase.execute(id);
   }
 
   @Post()
-  public async createSet(
-    @Body() data : ICreateSetsDTO
-  ): Promise<Set> {
+  public async createSet(@Body() data: ICreateSetsDTO): Promise<Set> {
     return this.createSetUseCase.execute(data);
   }
 
   @Put()
-  public async updateSet(
-    @Body() data : IUpdateSetsDTO
-  ): Promise<Set> {
+  public async updateSet(@Body() data: IUpdateSetsDTO): Promise<Set> {
     return this.updateSetUseCase.execute(data);
   }
 }

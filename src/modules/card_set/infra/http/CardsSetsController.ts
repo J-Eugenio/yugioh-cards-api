@@ -13,8 +13,8 @@ export class CardsSetsController {
     private readonly findCardSetsUseCase: FindCardSetsUseCase,
     private readonly findBySetCodeUseCase: FindBySetCodeUseCase,
     private readonly createCardSetUseCase: CreateCardSetUseCase,
-    private readonly updateCardSetUseCase: UpdateCardSetUseCase
-    ) {}
+    private readonly updateCardSetUseCase: UpdateCardSetUseCase,
+  ) {}
 
   @Get()
   public async findAll(): Promise<CardSets[]> {
@@ -22,22 +22,20 @@ export class CardsSetsController {
   }
 
   @Get('/:code')
-  public async findByCode(
-    @Param('code') code: string,
-  ): Promise<CardSets> {
+  public async findByCode(@Param('code') code: string): Promise<CardSets> {
     return this.findBySetCodeUseCase.execute(code);
   }
 
   @Post()
   public async createCardSet(
-    @Body() data : ICreateCardSetsDTO
+    @Body() data: ICreateCardSetsDTO,
   ): Promise<CardSets> {
     return this.createCardSetUseCase.execute(data);
   }
 
   @Put()
   public async updateCardSet(
-    @Body() data : IUpdateCardSetsDTO
+    @Body() data: IUpdateCardSetsDTO,
   ): Promise<CardSets> {
     return this.updateCardSetUseCase.execute(data);
   }

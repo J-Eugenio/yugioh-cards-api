@@ -1,4 +1,5 @@
 import { Card } from 'src/modules/card/infra/typeorm/entities/Card';
+import { Set } from 'src/modules/Set/infra/typeorm/entities/Set';
 import {
   Column,
   Entity,
@@ -49,4 +50,8 @@ export class CardSets {
   @ManyToOne(() => Card, (card) => card.card_sets)
   @JoinColumn({ name: 'card_id' })
   card: Card;
+
+  @ManyToOne(() => Set, (set) => set.cardSets)
+  @JoinColumn({ name: 'set_id' })
+  set: Set;
 }

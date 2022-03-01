@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { CardSets } from 'src/modules/card_set/infra/typeorm/entities/CardSets';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
   name: 'sets',
@@ -30,4 +31,9 @@ export class Set {
     nullable: true,
   })
   tcg_date?: Date;
+
+  //Relacionamentos
+
+  @OneToMany(() => CardSets, (cardSets) => cardSets.set)
+  cardSets: CardSets;
 }
