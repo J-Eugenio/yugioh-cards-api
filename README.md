@@ -39,7 +39,6 @@
     <img src="https://raw.githubusercontent.com/MicaelliMedeiros/micaellimedeiros/master/image/computer-illustration.png" min-width="400px" max-width="400px" width="400px" align="right" alt="Computador iuriCode">
   </div> 
   <br >
-  <br >
   <div style="padding: 1rem">
     <div>
         <strong style="font-size: 20px;">## 👨‍💻 Description</strong>
@@ -56,25 +55,25 @@
         <div><strong>## José Eugênio dos Santos</strong></div>
         <br>
         <sub>
-        [<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&theme=dark" />](https://www.linkedin.com/in/carlos-cenci-5771921b1/)
-        [<img src="https://img.shields.io/badge/Gmail-red?&style=for-the-badge&logo=Gmail&logoColor=white&theme=dark&link=mailto:carlosc.estevam@gmail.com">](mailto:carlosc.estevam@gmail.com)   
-        [<img src="https://img.shields.io/badge/Github-black?&style=for-the-badge&logo=Github&logoColor=white&theme=dark">](https://github.com/carloscenci)   
+        <a href="https://www.linkedin.com/in/j-eugenio/" target="_blank">
+            <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&theme=dark" />
+        </a> 
+        <a href="https://github.com/J-Eugenio" target="_blank">
+            <img src="https://img.shields.io/badge/Github-black?&style=for-the-badge&logo=Github&logoColor=white&theme=dark">
+        </a>
         </sub>
         <br>
         <br>
         <div><strong>## Carlos Cenci Estevam</strong></div>
         <br>
-        ### Redes sociais 🔌
-<sub>Manda um "Oi" <br>
-[<img src="https://img.shields.io/badge/Rocketseat-%237159c1?style=for-the-badge&logo=ghost&theme=dark" />](https://app.rocketseat.com.br/me/carlos-cenci-00767) 
-[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&theme=dark" />](https://www.linkedin.com/in/carlos-cenci-5771921b1/)
-[<img src="https://img.shields.io/badge/Gmail-red?&style=for-the-badge&logo=Gmail&logoColor=white&theme=dark&link=mailto:carlosc.estevam@gmail.com">](mailto:carlosc.estevam@gmail.com)   
-</sub>
         <sub>
-            [<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&theme=dark" />](https://www.linkedin.com/in/carlos-cenci-5771921b1/)
-            [<img src="https://img.shields.io/badge/Gmail-red?&style=for-the-badge&logo=Gmail&logoColor=white&theme=dark&link=mailto:carlosc.estevam@gmail.com">](mailto:carlosc.estevam@gmail.com)   
-            [<img src="https://img.shields.io/badge/Github-black?&style=for-the-badge&logo=Github&logoColor=white&theme=dark">](https://github.com/carloscenci)   
-            </sub>
+            <a href="https://www.linkedin.com/in/carlos-cenci-5771921b1/" target="_blank">
+                <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white&theme=dark" />
+            </a> 
+            <a href="https://github.com/carloscenci" target="_blank">
+                <img src="https://img.shields.io/badge/Github-black?&style=for-the-badge&logo=Github&logoColor=white&theme=dark">
+            </a> 
+        </sub>
     </div>
     <div style="margin-top: 2rem;">
         <strong style="font-size: 20px;">## 🖥 Website</strong>
