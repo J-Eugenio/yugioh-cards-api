@@ -36,11 +36,9 @@ class CardRepository implements ICardRepository {
     return card;
   }
 
-  public async updateCard(data: IUpdateCardDTO): Promise<Card> {
-    const card = this.ormRepository.create(data);
-
-    await this.ormRepository.save(card);
-
+  public async updateCard(id: number, data: IUpdateCardDTO): Promise<Card> {
+    await this.ormRepository.update(id, data);
+    const card = await this.ormRepository.findOne(id);
     return card;
   }
 }

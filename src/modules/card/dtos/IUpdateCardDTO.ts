@@ -2,13 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class IUpdateCardDTO {
   @ApiProperty({
-    description: 'ID do card',
-    nullable: false,
-    default: Math.floor(Math.random() * 10),
-  })
-  id: number;
-
-  @ApiProperty({
     description: 'Nome em EN do card',
     nullable: false,
     default: 'Blue-Eyes White Dragon',
