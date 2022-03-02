@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ICreateSetsDTO } from 'src/modules/Set/dtos/ICreateSetsDTO';
 import { IUpdateSetsDTO } from 'src/modules/Set/dtos/IUpdateSetsDTO';
 import { ISetsRepository } from 'src/modules/Set/repositories/ISetsRepository';
-import { EntityManager, MoreThan, Repository } from 'typeorm';
+import { EntityManager, Repository } from 'typeorm';
 import { Set } from '../entities/Set';
 
 @Injectable()
@@ -35,10 +35,9 @@ class SetsRepository implements ISetsRepository {
     return set;
   }
 
-  public async updateSet(data: IUpdateSetsDTO): Promise<Set> {
-    const set = this.ormRepository.create(data);
-
-    await this.ormRepository.save(set);
+  public async updateSet(id: number, data: IUpdateSetsDTO): Promise<Set> {
+    await this.ormRepository.update(id, data);
+    const set = await this.ormRepository.findOne(id);
 
     return set;
   }

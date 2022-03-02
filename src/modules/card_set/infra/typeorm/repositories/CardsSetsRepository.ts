@@ -46,7 +46,7 @@ class CardsSetsRepository implements ICardsSetsRepository {
     data: IUpdateCardSetsDTO,
   ): Promise<CardSets> {
     await this.ormRepository.update(id, data);
-    const card_set = this.ormRepository.findOne(id);
+    const card_set = await this.ormRepository.findOne(id);
 
     return card_set;
   }

@@ -6,5 +6,5 @@ export interface ISetsRepository {
   findAll(): Promise<Set[]>;
   findById(id: number): Promise<Set>;
   createSet(data: ICreateSetsDTO): Promise<Set>;
-  updateSet(data: IUpdateSetsDTO): Promise<Set>;
+  updateSet(id: number, data: IUpdateSetsDTO): Promise<Set>;
 }
