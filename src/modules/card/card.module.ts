@@ -6,6 +6,7 @@ import { CardRepository } from './infra/typeorm/repositories/CardRepository';
 import { CreateCardUseCase } from './useCases/createCard/CreateCardUseCase';
 import { FindCardUseCase } from './useCases/findAll/FindCardUseCase';
 import { FindCardByIdUseCase } from './useCases/findById/FindCardByIdUseCase';
+import { FindCardByParamsUseCase } from './useCases/findByParams/FindCardByParamsUseCase';
 import { UpdateCardUseCase } from './useCases/updateCard/UpdateCardUseCase';
 
 @Module({
@@ -13,6 +14,7 @@ import { UpdateCardUseCase } from './useCases/updateCard/UpdateCardUseCase';
   providers: [
     FindCardUseCase,
     FindCardByIdUseCase,
+    FindCardByParamsUseCase,
     CreateCardUseCase,
     UpdateCardUseCase,
     {

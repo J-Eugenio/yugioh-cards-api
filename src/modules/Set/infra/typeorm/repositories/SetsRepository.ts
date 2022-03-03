@@ -27,6 +27,14 @@ class SetsRepository implements ISetsRepository {
     });
   }
 
+  public async findByName(set_name: string): Promise<Sets[]> {
+    return await this.ormRepository.find({
+      where: {
+        set_name,
+      },
+    });
+  }
+
   public async createSet(data: ICreateSetsDTO): Promise<Sets> {
     const set = this.ormRepository.create(data);
 
