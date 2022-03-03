@@ -17,33 +17,30 @@ class RacesRepository implements IRacesRepository {
     return await this.ormRepository.find();
   }
 
-  public async findById(id: number){
+  public async findById(id: number) {
     return await this.ormRepository.findOne({
       where: {
-        id
+        id,
       },
-    })
+    });
   }
 
   public async createRace(data: ICreateRaceDTO): Promise<Race> {
     const race = this.ormRepository.create(data);
 
-    console.log(race, 'race')
+    console.log(race, 'race');
 
     await this.ormRepository.save(race);
-    
+
     return race;
   }
 
-  public async updateRace(data: IUpdateRaceDTO): Promise<Race> {
-    const race = this.ormRepository.create(data);
+  public async updateRace(id: number, data: IUpdateRaceDTO): Promise<Race> {
+    await this.ormRepository.update(id, data);
+    const race = await this.ormRepository.findOne(id);
 
-    await this.ormRepository.save(race);
-    
     return race;
   }
-
-
 }
 
 export { RacesRepository };

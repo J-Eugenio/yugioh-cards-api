@@ -6,5 +6,5 @@ export interface ICardRepository {
   findAll(): Promise<Card[]>;
   findById(id: number): Promise<Card>;
   createCard(data: ICreateCardDTO): Promise<Card>;
-  updateCard(data: IUpdateCardDTO): Promise<Card>;
+  updateCard(id: number, data: IUpdateCardDTO): Promise<Card>;
 }

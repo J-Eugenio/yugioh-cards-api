@@ -1,4 +1,10 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class IUpdateRaceDTO {
-  id: number;
+  @ApiProperty({
+    description: 'Nome da raça',
+    nullable: false,
+    default: 'Beast',
+  })
   name: string;
 }
