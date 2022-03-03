@@ -6,5 +6,5 @@ export interface ITypesRepository {
   findAll(): Promise<Type[]>;
   findById(id: number): Promise<Type>;
   createType(data: ICreateTypeDTO): Promise<Type>;
-  updateType(data: IUpdateTypeDTO): Promise<Type>;
+  updateType(id: number, data: IUpdateTypeDTO): Promise<Type>;
 }

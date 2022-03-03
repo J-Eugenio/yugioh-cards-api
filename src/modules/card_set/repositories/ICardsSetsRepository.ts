@@ -8,5 +8,5 @@ export interface ICardsSetsRepository {
   findBySetId(set_id: number): Promise<CardSets[]>;
   findByParams({ set_code, set_rarity }): Promise<CardSets[]>
   createCardSet(data: ICreateCardSetsDTO): Promise<CardSets>;
-  updateCardSet(data: IUpdateCardSetsDTO): Promise<CardSets>;
+  updateCardSet(id: number, data: IUpdateCardSetsDTO): Promise<CardSets>;
 }

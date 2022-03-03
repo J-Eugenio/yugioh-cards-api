@@ -1,4 +1,12 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  ApiBody,
+  ApiExcludeEndpoint,
+  ApiOkResponse,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ICreateRaceDTO } from '../../dtos/ICreateRaceDTO';
 import { IUpdateRaceDTO } from '../../dtos/IUpdateRaceDTO';
 import { CreateRaceUseCase } from '../../useCase/createRace/CreateRaceUseCase';
@@ -7,38 +15,70 @@ import { FindRacesUseCase } from '../../useCase/findRaces/FindRacesUseCase';
 import { UpdateRaceUseCase } from '../../useCase/updateRace/UpdateRaceUseCase';
 import { Race } from '../typeorm/entities/Race';
 
+@ApiTags('races')
 @Controller('races')
 export class RaceController {
   constructor(
-      private readonly findRacesUseCase: FindRacesUseCase,
-      private readonly findByIdUseCase: FindRaceByIdUseCase,
-      private readonly createRaceUseCase: CreateRaceUseCase,
-      private readonly updateRaceUseCase: UpdateRaceUseCase,
-    ) {}
+    private readonly findRacesUseCase: FindRacesUseCase,
+    private readonly findByIdUseCase: FindRaceByIdUseCase,
+    private readonly createRaceUseCase: CreateRaceUseCase,
+    private readonly updateRaceUseCase: UpdateRaceUseCase,
+  ) {}
 
+  @ApiOkResponse({
+    description: 'Todas os tipos recuperados com sucesso!',
+    type: [Race],
+  })
   @Get()
   public async findAll(): Promise<Race[]> {
     return this.findRacesUseCase.execute();
   }
 
+  @ApiResponse({
+    description: 'Raça recupero por ID',
+    type: Race,
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'Raça recuperado por ID',
+  })
   @Get('/:id')
-  public async findById(
-    @Param('id') id: number,
-  ): Promise<Race> {
+  public async findById(@Param('id') id: number): Promise<Race> {
     return this.findByIdUseCase.execute(id);
   }
 
+  @ApiBody({
+    description: 'Informar os dados de cadastro',
+    type: ICreateRaceDTO,
+  })
+  @ApiResponse({
+    description: 'Cadastro realizado com sucesso',
+    type: Race,
+  })
+  @ApiExcludeEndpoint(true)
   @Post()
-  public async createRace(
-    @Body() data : ICreateRaceDTO
-  ): Promise<Race> {
+  public async createRace(@Body() data: ICreateRaceDTO): Promise<Race> {
     return this.createRaceUseCase.execute(data);
   }
 
-  @Put()
+  @ApiParam({
+    name: 'id',
+    description: 'ID da Raça',
+  })
+  @ApiBody({
+    description: 'Informar os dados para atualizar o Raça',
+    type: IUpdateRaceDTO,
+  })
+  @ApiResponse({
+    description: 'Raça atualizado com sucesso',
+    type: Race,
+  })
+  @ApiExcludeEndpoint(true)
+  @Put(':id')
   public async updateRace(
-    @Body() data : IUpdateRaceDTO
+    @Param('id') id: number,
+    @Body() data: IUpdateRaceDTO,
   ): Promise<Race> {
-    return this.updateRaceUseCase.execute(data);
+    return this.updateRaceUseCase.execute(id, data);
   }
 }

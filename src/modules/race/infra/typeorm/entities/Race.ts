@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Card } from 'src/modules/card/infra/typeorm/entities/Card';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -5,9 +6,19 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
   name: 'races',
 })
 export class Race {
+  @ApiProperty({
+    description: 'ID da raça',
+    nullable: false,
+    default: Math.floor(Math.random() * 1000),
+  })
   @PrimaryGeneratedColumn('increment')
   id: number;
 
+  @ApiProperty({
+    description: 'Nome da raça',
+    nullable: false,
+    default: 'Beast',
+  })
   @Column({
     type: 'character varying',
     nullable: false,
