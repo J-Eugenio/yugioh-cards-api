@@ -139,6 +139,17 @@ class Card {
   })
   attribute?: string;
 
+  @ApiProperty({
+    description: 'Archetype da carta',
+    nullable: true,
+    default: 'Blue-Eyes',
+  })
+  @Column({
+    type: 'character varying',
+    nullable: true,
+  })
+  archetype?: string;
+
   //Relacionamentos
   @OneToMany(() => Images, (images) => images.card)
   images: Images[];

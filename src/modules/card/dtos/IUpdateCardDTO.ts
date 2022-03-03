@@ -72,4 +72,11 @@ export class IUpdateCardDTO {
     default: 'LIGHT',
   })
   attribute?: string;
+
+  @ApiProperty({
+    description: 'Archetype da carta',
+    nullable: true,
+    default: 'Blue-Eyes"',
+  })
+  archetype?: string;
 }
