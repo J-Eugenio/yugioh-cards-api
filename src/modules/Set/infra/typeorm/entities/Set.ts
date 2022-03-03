@@ -5,7 +5,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 @Entity({
   name: 'sets',
 })
-export class Set {
+class Sets {
   @ApiProperty({
     description: 'ID do pacote',
     nullable: false,
@@ -63,3 +63,5 @@ export class Set {
   @OneToMany(() => CardSets, (cardSets) => cardSets.set)
   cardSets: CardSets;
 }
+
+export { Sets };

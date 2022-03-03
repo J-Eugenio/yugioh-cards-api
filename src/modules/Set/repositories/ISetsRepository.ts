@@ -1,10 +1,10 @@
 import { ICreateSetsDTO } from '../dtos/ICreateSetsDTO';
 import { IUpdateSetsDTO } from '../dtos/IUpdateSetsDTO';
-import { Set } from '../infra/typeorm/entities/Set';
+import { Sets } from '../infra/typeorm/entities/Set';
 
 export interface ISetsRepository {
-  findAll(): Promise<Set[]>;
-  findById(id: number): Promise<Set>;
-  createSet(data: ICreateSetsDTO): Promise<Set>;
-  updateSet(id: number, data: IUpdateSetsDTO): Promise<Set>;
+  findAll(): Promise<Sets[]>;
+  findById(id: number): Promise<Sets>;
+  createSet(data: ICreateSetsDTO): Promise<Sets>;
+  updateSet(id: number, data: IUpdateSetsDTO): Promise<Sets>;
 }

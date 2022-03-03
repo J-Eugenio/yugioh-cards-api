@@ -6,5 +6,5 @@ export interface IRacesRepository {
   findAll(): Promise<Race[]>;
   findById(id: number): Promise<Race>;
   createRace(data: ICreateRaceDTO): Promise<Race>;
-  updateRace(data: IUpdateRaceDTO): Promise<Race>;
+  updateRace(id: number, data: IUpdateRaceDTO): Promise<Race>;
 }

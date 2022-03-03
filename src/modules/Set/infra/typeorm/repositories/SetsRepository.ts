@@ -3,14 +3,14 @@ import { ICreateSetsDTO } from 'src/modules/Set/dtos/ICreateSetsDTO';
 import { IUpdateSetsDTO } from 'src/modules/Set/dtos/IUpdateSetsDTO';
 import { ISetsRepository } from 'src/modules/Set/repositories/ISetsRepository';
 import { EntityManager, Repository } from 'typeorm';
-import { Set } from '../entities/Set';
+import { Sets } from '../entities/Set';
 
 @Injectable()
 class SetsRepository implements ISetsRepository {
-  private ormRepository: Repository<Set>;
+  private ormRepository: Repository<Sets>;
 
   constructor(manager: EntityManager) {
-    this.ormRepository = manager.getRepository(Set);
+    this.ormRepository = manager.getRepository(Sets);
   }
 
   public async findAll() {
@@ -27,7 +27,7 @@ class SetsRepository implements ISetsRepository {
     });
   }
 
-  public async createSet(data: ICreateSetsDTO): Promise<Set> {
+  public async createSet(data: ICreateSetsDTO): Promise<Sets> {
     const set = this.ormRepository.create(data);
 
     await this.ormRepository.save(set);
@@ -35,7 +35,7 @@ class SetsRepository implements ISetsRepository {
     return set;
   }
 
-  public async updateSet(id: number, data: IUpdateSetsDTO): Promise<Set> {
+  public async updateSet(id: number, data: IUpdateSetsDTO): Promise<Sets> {
     await this.ormRepository.update(id, data);
     const set = await this.ormRepository.findOne(id);
 

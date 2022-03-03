@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Set } from '../../infra/typeorm/entities/Set';
+import { Sets } from '../../infra/typeorm/entities/Set';
 import { ISetsRepository } from '../../repositories/ISetsRepository';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class FindSetByIdUseCase {
     private setsRepository: ISetsRepository,
   ) {}
 
-  public async execute(id: number): Promise<Set> {
+  public async execute(id: number): Promise<Sets> {
     return await this.setsRepository.findById(id);
   }
 }

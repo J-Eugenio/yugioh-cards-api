@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Card } from 'src/modules/card/infra/typeorm/entities/Card';
-import { Set } from 'src/modules/Set/infra/typeorm/entities/Set';
+import { Sets } from 'src/modules/Set/infra/typeorm/entities/Set';
 import {
   Column,
   Entity,
@@ -82,7 +82,7 @@ export class CardSets {
   @JoinColumn({ name: 'card_id' })
   card: Card;
 
-  @ManyToOne(() => Set, (set) => set.cardSets)
+  @ManyToOne(() => Sets, (set) => set.cardSets)
   @JoinColumn({ name: 'set_id' })
-  set: Set;
+  set: Sets;
 }

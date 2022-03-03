@@ -13,7 +13,7 @@ import { CreateSetUseCase } from '../../useCase/createSet/CreateSetUseCase';
 import { FindSetByIdUseCase } from '../../useCase/findBySetCode/FindSetByIdUseCase';
 import { FindSetsUseCase } from '../../useCase/findSets/FindSetsUseCase';
 import { UpdateSetUseCase } from '../../useCase/updateSet/UpdateSetUseCase';
-import { Set } from '../typeorm/entities/Set';
+import { Sets } from '../typeorm/entities/Set';
 
 @ApiTags('set')
 @Controller('set')
@@ -27,23 +27,23 @@ export class SetsController {
 
   @ApiOkResponse({
     description: 'Todas os sets recuperados com sucesso!',
-    type: [Set],
+    type: [Sets],
   })
   @Get()
-  public async findAll(): Promise<Set[]> {
+  public async findAll(): Promise<Sets[]> {
     return this.findSetsUseCase.execute();
   }
 
   @ApiResponse({
     description: 'Set recupero por ID',
-    type: Set,
+    type: Sets,
   })
   @ApiParam({
     name: 'id',
     description: 'Set recuperado por ID',
   })
   @Get('/:id')
-  public async findById(@Param('id') id: number): Promise<Set> {
+  public async findById(@Param('id') id: number): Promise<Sets> {
     return this.findSetByIdUseCase.execute(id);
   }
 
@@ -53,11 +53,11 @@ export class SetsController {
   })
   @ApiResponse({
     description: 'Cadastro realizado com sucesso',
-    type: Set,
+    type: Sets,
   })
   @ApiExcludeEndpoint(true)
   @Post()
-  public async createSet(@Body() data: ICreateSetsDTO): Promise<Set> {
+  public async createSet(@Body() data: ICreateSetsDTO): Promise<Sets> {
     return this.createSetUseCase.execute(data);
   }
 
@@ -71,14 +71,14 @@ export class SetsController {
   })
   @ApiResponse({
     description: 'Carta atualizada com sucesso',
-    type: Set,
+    type: Sets,
   })
   @ApiExcludeEndpoint(true)
   @Put(':id')
   public async updateSet(
     id: number,
     @Body() data: IUpdateSetsDTO,
-  ): Promise<Set> {
+  ): Promise<Sets> {
     return this.updateSetUseCase.execute(id, data);
   }
 }

@@ -1,6 +1,6 @@
 import { BadRequestException, Inject, NotFoundException } from '@nestjs/common';
 import { IUpdateSetsDTO } from '../../dtos/IUpdateSetsDTO';
-import { Set } from '../../infra/typeorm/entities/Set';
+import { Sets } from '../../infra/typeorm/entities/Set';
 import { ISetsRepository } from '../../repositories/ISetsRepository';
 
 class UpdateSetUseCase {
@@ -9,7 +9,7 @@ class UpdateSetUseCase {
     private setsRepository: ISetsRepository,
   ) {}
 
-  public async execute(id: number, data: IUpdateSetsDTO): Promise<Set> {
+  public async execute(id: number, data: IUpdateSetsDTO): Promise<Sets> {
     // Verificação para existência de um produto
     const check_exists_set = await this.setsRepository.findById(id);
 
