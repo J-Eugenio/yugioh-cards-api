@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ICreateCardSetsDTO } from '../../dtos/ICreateCardSetsDTO';
 import { IUpdateCardSetsDTO } from '../../dtos/IUpdateCardSetsDTO';
 import { CreateCardSetUseCase } from '../../useCase/createCardSet/CreateCardSetUseCase';
+import { FindBySetByParamsUseCase } from '../../useCase/findBySetByParams/FindBySetByParamsUseCase';
 import { FindBySetCodeUseCase } from '../../useCase/findBySetCode/FindBySetCodeUseCase';
 import { FindBySetIdUseCase } from '../../useCase/findBySetId/FindBySetIdUseCase';
 import { FindCardSetsUseCase } from '../../useCase/findCardSets/FindCardSetsUseCase';
@@ -14,6 +15,7 @@ export class CardsSetsController {
     private readonly findCardSetsUseCase: FindCardSetsUseCase,
     private readonly findBySetCodeUseCase: FindBySetCodeUseCase,
     private readonly findBySetIdUseCase: FindBySetIdUseCase,
+    private readonly findBySetByParamsUseCase: FindBySetByParamsUseCase,
     private readonly createCardSetUseCase: CreateCardSetUseCase,
     private readonly updateCardSetUseCase: UpdateCardSetUseCase,
   ) {}
@@ -33,6 +35,13 @@ export class CardsSetsController {
     @Param('id') id: number,
   ): Promise<CardSets[]> {
     return this.findBySetIdUseCase.execute(id);
+  }
+
+  @Get('/sets/:id')
+  public async findBySetByParams(
+    @Body() { set_code, set_rarity } : { set_code, set_rarity },
+  ): Promise<CardSets[]> {
+    return this.findBySetByParamsUseCase.execute({ set_code, set_rarity });
   }
 
   @Post()

@@ -34,6 +34,23 @@ class CardsSetsRepository implements ICardsSetsRepository {
     })
   }
 
+  public async findByParams({ set_code, set_rarity }): Promise<CardSets[]>{
+    return await this.ormRepository.query(`
+      SELECT * FROM card_sets cst
+      LEFT JOIN sets st ON st.set_code ILIKE cst.set_code
+      WHERE
+      CASE WHEN $1 IS NOT NULL
+        THEN cst.set_code LIKE $1
+        ELSE true
+      END
+      AND
+      CASE WHEN $2 IS NOT NULL 
+        THEN cst.set_rarity LIKE $2
+        ELSE true
+      END
+    `, [set_code, set_rarity])
+  }
+
   public async createCardSet(data: ICreateCardSetsDTO): Promise<CardSets> {
     const card_set = this.ormRepository.create(data);
 
