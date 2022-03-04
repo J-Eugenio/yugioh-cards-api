@@ -8,6 +8,7 @@ import { BCryptHashProvider } from 'src/shared/hash/implementations/BCryptHashPr
 import { UserRepository } from './infra/typeorm/repositories/UserRepository';
 import { UserController } from './infra/http/user.controller';
 import { CreateUserUseCase } from './useCase/createUser/CreateUserUseCase';
+import { NestJWTTokenProvider } from 'src/shared/auth/TokenProvider/implementations/NestJWTTokenProvider';
 
 @Module({
   imports: [
@@ -30,6 +31,11 @@ import { CreateUserUseCase } from './useCase/createUser/CreateUserUseCase';
       provide: 'UserRepository',
       inject: [UserRepository],
       useClass: UserRepository,
+    },
+    {
+      provide: 'TokenProvider',
+      inject: [NestJWTTokenProvider],
+      useClass: NestJWTTokenProvider,
     },
   ],
 })
