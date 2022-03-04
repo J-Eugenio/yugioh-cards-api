@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
@@ -7,6 +16,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { LocationRateLimitInterceptor } from 'src/shared/Utils/RateLimit';
 import { ICreateTypeDTO } from '../../dtos/ICreateTypeDTO';
 import { IUpdateTypeDTO } from '../../dtos/IUpdateTypeDTO';
 import { CreateTypeUseCase } from '../../useCase/createType/CreateTypeUseCase';
@@ -16,6 +26,7 @@ import { UpdateTypeUseCase } from '../../useCase/updateType/UpdateTypeUseCase';
 import { Type } from '../typeorm/entities/Type';
 
 @ApiTags('types')
+@UseInterceptors(new LocationRateLimitInterceptor())
 @Controller('types')
 export class TypesController {
   constructor(
