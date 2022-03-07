@@ -5,10 +5,11 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
   Arquivo de configuração do typeorm, para fazer a comunicação com o DataBase
 */
 
-const options: TypeOrmModuleOptions = {
+export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
   port: Number(process.env.DB_PORT) || 5432,
+  // port: Number(process.env.DB_PORT) || 5432,
   database: process.env.DB_NAME || 'yugioh',
   username: process.env.DB_USER || 'root',
   password: process.env.DB_PASS || 'root',
@@ -37,5 +38,3 @@ const options: TypeOrmModuleOptions = {
   },
   synchronize: false,
 };
-
-module.exports = options;
