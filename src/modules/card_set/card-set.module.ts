@@ -7,6 +7,7 @@ import { CardsSetsRepository } from './infra/typeorm/repositories/CardsSetsRepos
 import { CreateCardSetUseCase } from './useCase/createCardSet/CreateCardSetUseCase';
 import { FindBySetCodeUseCase } from './useCase/findBySetCode/FindBySetCodeUseCase';
 import { FindBySetIdUseCase } from './useCase/findBySetId/FindBySetIdUseCase';
+import { FindBySetRarityUseCase } from './useCase/findBySetRarity/FindBySetRarityUseCase';
 import { FindCardSetsUseCase } from './useCase/findCardSets/FindCardSetsUseCase';
 import { UpdateCardSetUseCase } from './useCase/updateCardSet/UpdateCardSetUseCase';
 
@@ -18,6 +19,7 @@ import { UpdateCardSetUseCase } from './useCase/updateCardSet/UpdateCardSetUseCa
     UpdateCardSetUseCase,
     FindBySetCodeUseCase,
     FindBySetIdUseCase,
+    FindBySetRarityUseCase,
     {
       provide: 'CardsSetsRepository',
       inject: [CardsSetsRepository],

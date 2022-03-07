@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ICreateCardDTO } from 'src/modules/card/dtos/ICreateCardDTO';
 import { IUpdateCardDTO } from 'src/modules/card/dtos/IUpdateCardDTO';
 import { ICardRepository } from 'src/modules/card/repositories/ICardRepository';
-import { EntityManager, Repository } from 'typeorm';
+import { EntityManager, ILike, Repository } from 'typeorm';
 import { Card } from '../entities/Card';
 
 @Injectable()
@@ -23,6 +23,60 @@ class CardRepository implements ICardRepository {
     return await this.ormRepository.findOne({
       where: {
         id,
+      },
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
+  }
+
+  public async findByName(name: string): Promise<Card[]> {
+    return await this.ormRepository.find({
+      where: {
+        name: ILike(`%${name}%`),
+      },
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
+  }
+
+  public async findByNamePT(name_pt: string): Promise<Card[]> {
+    return await this.ormRepository.find({
+      where: {
+        name_pt: ILike(`%${name_pt}%`),
+      },
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
+  }
+
+  public async findByAtk(atk: number): Promise<Card[]> {
+    return await this.ormRepository.find({
+      where: {
+        atk: atk,
+      },
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
+  }
+
+  public async findByDef(def: number): Promise<Card[]> {
+    return await this.ormRepository.find({
+      where: {
+        def: def,
+      },
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
+  }
+
+  public async findByLevel(level: number): Promise<Card[]> {
+    return await this.ormRepository.find({
+      where: {
+        level: level,
+      },
+      relations: ['images', 'race_r', 'type_r', 'card_sets'],
+    });
+  }
+
+  public async findByAttribute(attribute: string): Promise<Card[]> {
+    return await this.ormRepository.find({
+      where: {
+        attribute: attribute,
       },
       relations: ['images', 'race_r', 'type_r', 'card_sets'],
     });

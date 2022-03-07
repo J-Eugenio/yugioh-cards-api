@@ -21,7 +21,8 @@ import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard
 import { ICreateSetsDTO } from '../../dtos/ICreateSetsDTO';
 import { IUpdateSetsDTO } from '../../dtos/IUpdateSetsDTO';
 import { CreateSetUseCase } from '../../useCase/createSet/CreateSetUseCase';
-import { FindSetByIdUseCase } from '../../useCase/findBySetCode/FindSetByIdUseCase';
+import { FindSetByIdUseCase } from '../../useCase/findById/FindSetByIdUseCase';
+import { FindBySetNameUseCase } from '../../useCase/findBySetName/FindBySetNameUseCase';
 import { FindSetsUseCase } from '../../useCase/findSets/FindSetsUseCase';
 import { UpdateSetUseCase } from '../../useCase/updateSet/UpdateSetUseCase';
 import { Sets } from '../typeorm/entities/Set';
@@ -33,6 +34,7 @@ export class SetsController {
   constructor(
     private readonly findSetsUseCase: FindSetsUseCase,
     private readonly findSetByIdUseCase: FindSetByIdUseCase,
+    private readonly findBySetNameUseCase: FindBySetNameUseCase,
     private readonly createSetUseCase: CreateSetUseCase,
     private readonly updateSetUseCase: UpdateSetUseCase,
   ) {}
@@ -59,6 +61,22 @@ export class SetsController {
   @Get('/:id')
   public async findById(@Param('id') id: number): Promise<Sets> {
     return this.findSetByIdUseCase.execute(id);
+  }
+
+  @UseGuards(JwtPublicAuthGuard)
+  @ApiResponse({
+    description: 'Filtra Set por Nome',
+    type: Sets,
+  })
+  @ApiParam({
+    name: 'set_name',
+    description: 'Nome do Set',
+  })
+  @Get('/:set_name')
+  public async findByName(
+    @Param('set_name') set_name: string,
+  ): Promise<Sets[]> {
+    return this.findBySetNameUseCase.execute(set_name);
   }
 
   @UseGuards(JwtPrivateAuthGuard)

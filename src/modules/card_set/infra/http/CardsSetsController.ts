@@ -23,6 +23,7 @@ import { IUpdateCardSetsDTO } from '../../dtos/IUpdateCardSetsDTO';
 import { CreateCardSetUseCase } from '../../useCase/createCardSet/CreateCardSetUseCase';
 import { FindBySetCodeUseCase } from '../../useCase/findBySetCode/FindBySetCodeUseCase';
 import { FindBySetIdUseCase } from '../../useCase/findBySetId/FindBySetIdUseCase';
+import { FindBySetRarityUseCase } from '../../useCase/findBySetRarity/FindBySetRarityUseCase';
 import { FindCardSetsUseCase } from '../../useCase/findCardSets/FindCardSetsUseCase';
 import { UpdateCardSetUseCase } from '../../useCase/updateCardSet/UpdateCardSetUseCase';
 import { CardSets } from '../typeorm/entities/CardSets';
@@ -37,6 +38,7 @@ export class CardsSetsController {
     private readonly findBySetIdUseCase: FindBySetIdUseCase,
     private readonly createCardSetUseCase: CreateCardSetUseCase,
     private readonly updateCardSetUseCase: UpdateCardSetUseCase,
+    private readonly findBySetRarityUseCase: FindBySetRarityUseCase,
   ) {}
 
   @UseGuards(JwtPublicAuthGuard)
@@ -58,9 +60,25 @@ export class CardsSetsController {
     name: 'code',
     description: 'Codigo do card set',
   })
-  @Get('/:code')
+  @Get('/code/:code')
   public async findByCode(@Param('code') code: string): Promise<CardSets> {
-    return this.findBySetCodeUseCase.execute(code);
+    return await this.findBySetCodeUseCase.execute(code);
+  }
+
+  @UseGuards(JwtPublicAuthGuard)
+  @ApiResponse({
+    description: 'Card set recupero por raridade',
+    type: CardSets,
+  })
+  @ApiParam({
+    name: 'rarity',
+    description: 'Raridade do card set',
+  })
+  @Get('/rarity/:rarity')
+  public async findByRarity(
+    @Param('rarity') rarity: string,
+  ): Promise<CardSets[]> {
+    return await this.findBySetRarityUseCase.execute(rarity);
   }
 
   @UseGuards(JwtPublicAuthGuard)
