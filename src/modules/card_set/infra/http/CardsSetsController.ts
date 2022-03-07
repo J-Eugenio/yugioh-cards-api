@@ -1,12 +1,23 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
+import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { ICreateCardSetsDTO } from '../../dtos/ICreateCardSetsDTO';
 import { IUpdateCardSetsDTO } from '../../dtos/IUpdateCardSetsDTO';
 import { CreateCardSetUseCase } from '../../useCase/createCardSet/CreateCardSetUseCase';
@@ -18,6 +29,7 @@ import { CardSets } from '../typeorm/entities/CardSets';
 
 @ApiTags('cardsets')
 @Controller('cardsets')
+@ApiSecurity('access-key')
 export class CardsSetsController {
   constructor(
     private readonly findCardSetsUseCase: FindCardSetsUseCase,
@@ -27,6 +39,7 @@ export class CardsSetsController {
     private readonly updateCardSetUseCase: UpdateCardSetUseCase,
   ) {}
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiOkResponse({
     description: 'Todas os sets cards recuperadas com sucesso!',
     type: [CardSets],
@@ -36,6 +49,7 @@ export class CardsSetsController {
     return this.findCardSetsUseCase.execute();
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Carta recupera por ID',
     type: CardSets,
@@ -49,6 +63,7 @@ export class CardsSetsController {
     return this.findBySetCodeUseCase.execute(code);
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Carta recupera por ID',
     type: CardSets,
@@ -62,6 +77,7 @@ export class CardsSetsController {
     return this.findBySetIdUseCase.execute(id);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiBody({
     description: 'Informar os dados de cadastro',
     type: ICreateCardSetsDTO,
@@ -78,6 +94,7 @@ export class CardsSetsController {
     return this.createCardSetUseCase.execute(data);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiParam({
     name: 'id',
     description: 'ID da carta',

@@ -13,6 +13,7 @@ import {
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
@@ -27,6 +28,7 @@ import { Card } from '../typeorm/entities/Card';
 
 @ApiTags('card')
 @Controller('card')
+@ApiSecurity('access-key')
 export class CardController {
   constructor(
     private readonly findCardUseCase: FindCardUseCase,

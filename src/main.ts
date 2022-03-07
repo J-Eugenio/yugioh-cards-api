@@ -10,6 +10,14 @@ async function bootstrap() {
     .setDescription('Description')
     .setVersion('1.0')
     .addTag('Yu-Gi-OH!')
+    .addApiKey(
+      {
+        type: 'apiKey', // this should be apiKey
+        name: 'api_token',
+        in: 'header',
+      },
+      'access-key',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

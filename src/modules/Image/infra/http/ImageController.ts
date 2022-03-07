@@ -7,13 +7,14 @@ import {
   NotFoundException,
   UseGuards,
 } from '@nestjs/common';
-import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiParam, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { IFindByIconNameDTO } from '../../dtos/IFindByIconNameDTO';
 import { IFindByIdDTO } from '../../dtos/IFindByIdDTO';
 
 @ApiTags('image')
 @Controller('image')
+@ApiSecurity('access-key')
 export class ImageController {
   @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({

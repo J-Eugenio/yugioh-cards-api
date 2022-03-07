@@ -13,6 +13,7 @@ import {
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
@@ -27,6 +28,7 @@ import { Type } from '../typeorm/entities/Type';
 
 @ApiTags('types')
 @Controller('types')
+@ApiSecurity('access-key')
 export class TypesController {
   constructor(
     private readonly findTypesUseCase: FindTypesUseCase,

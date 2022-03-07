@@ -13,6 +13,7 @@ import {
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
@@ -27,6 +28,7 @@ import { Race } from '../typeorm/entities/Race';
 
 @ApiTags('races')
 @Controller('races')
+@ApiSecurity('access-key')
 export class RaceController {
   constructor(
     private readonly findRacesUseCase: FindRacesUseCase,

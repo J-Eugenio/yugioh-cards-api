@@ -13,6 +13,7 @@ import {
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
@@ -27,6 +28,7 @@ import { Sets } from '../typeorm/entities/Set';
 
 @ApiTags('set')
 @Controller('set')
+@ApiSecurity('access-key')
 export class SetsController {
   constructor(
     private readonly findSetsUseCase: FindSetsUseCase,
