@@ -33,6 +33,20 @@ class UserRepository implements IUserRepository {
       },
     });
   }
+
+  public async findByID(id: number): Promise<User> {
+    return await this.ormRepository.findOne(id);
+  }
+
+  public async findByApiToken(token: string): Promise<boolean> {
+    const user = await this.ormRepository.findOne({
+      where: {
+        api_key: token,
+      },
+    });
+
+    return !!user;
+  }
 }
 
 export { UserRepository };

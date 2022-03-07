@@ -1,6 +1,6 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
-import { ITokenProvider } from 'src/shared/auth/TokenProvider/interface/ITokenProvider';
-import { IHashProvider } from 'src/shared/hash/interface/IHashProvider';
+import { ITokenProvider } from 'src/shared/middleware/auth/TokenProvider/interface/ITokenProvider';
+import { IHashProvider } from 'src/shared/Utils/hash/interface/IHashProvider';
 import { IAuthenticateUserDTO } from '../../dtos/IAuthenticateUserDTO';
 import { IResponseTokenDTO } from '../../dtos/IResponseTokenDTO';
 import { IUserRepository } from '../../repositories/IUserRepository';
@@ -37,7 +37,7 @@ class AuthenticateUserUseCase {
       throw new UnauthorizedException('Combinação Usuario/senha incorreta!');
     }
 
-    const token = await this.tokenProvider.generateToken(user.id);
+    const token = await this.tokenProvider.generateToken(user.id, user.access);
 
     return {
       token,
@@ -48,6 +48,7 @@ class AuthenticateUserUseCase {
         username: user.username,
         instagram_profile: user.instagram_profile,
         api_key: user.api_key,
+        access: user.access,
       },
     };
   }

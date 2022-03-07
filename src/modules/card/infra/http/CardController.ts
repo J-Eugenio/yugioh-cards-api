@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
@@ -7,6 +15,8 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
+import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { ICreateCardDTO } from '../../dtos/ICreateCardDTO';
 import { IUpdateCardDTO } from '../../dtos/IUpdateCardDTO';
 import { CreateCardUseCase } from '../../useCases/createCard/CreateCardUseCase';
@@ -25,6 +35,7 @@ export class CardController {
     private readonly updateCardUseCase: UpdateCardUseCase,
   ) {}
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiOkResponse({
     description: 'Todas as cartas recuperadas com sucesso!',
     type: [Card],
@@ -34,6 +45,7 @@ export class CardController {
     return this.findCardUseCase.execute();
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Carta recupera por ID',
     type: Card,
@@ -47,6 +59,7 @@ export class CardController {
     return this.findCardByIdUseCase.execute(id);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiBody({
     description: 'Informar os dados de cadastro da carta',
     type: ICreateCardDTO,
@@ -61,6 +74,7 @@ export class CardController {
     return this.createCardUseCase.execute(data);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiParam({
     name: 'id',
     description: 'ID da carta',

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
@@ -7,6 +15,8 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
+import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { ICreateSetsDTO } from '../../dtos/ICreateSetsDTO';
 import { IUpdateSetsDTO } from '../../dtos/IUpdateSetsDTO';
 import { CreateSetUseCase } from '../../useCase/createSet/CreateSetUseCase';
@@ -25,6 +35,7 @@ export class SetsController {
     private readonly updateSetUseCase: UpdateSetUseCase,
   ) {}
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiOkResponse({
     description: 'Todas os sets recuperados com sucesso!',
     type: [Sets],
@@ -34,6 +45,7 @@ export class SetsController {
     return this.findSetsUseCase.execute();
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Set recupero por ID',
     type: Sets,
@@ -47,6 +59,7 @@ export class SetsController {
     return this.findSetByIdUseCase.execute(id);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiBody({
     description: 'Informar os dados de cadastro',
     type: ICreateSetsDTO,
@@ -61,6 +74,7 @@ export class SetsController {
     return this.createSetUseCase.execute(data);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiParam({
     name: 'id',
     description: 'ID da carta',

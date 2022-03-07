@@ -48,6 +48,13 @@ export class User {
   api_key?: string;
 
   @Column({
+    type: 'integer',
+    nullable: false,
+    default: 1,
+  })
+  access: number;
+
+  @Column({
     type: 'character varying',
     nullable: true,
   })

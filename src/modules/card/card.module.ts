@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserRepository } from '../user/infra/typeorm/repositories/UserRepository';
 import { CardController } from './infra/http/CardController';
 import { Card } from './infra/typeorm/entities/Card';
 import { CardRepository } from './infra/typeorm/repositories/CardRepository';
@@ -19,6 +20,11 @@ import { UpdateCardUseCase } from './useCases/updateCard/UpdateCardUseCase';
       provide: 'CardRepository',
       inject: [CardRepository],
       useClass: CardRepository,
+    },
+    {
+      provide: 'UserRepository',
+      inject: [UserRepository],
+      useClass: UserRepository,
     },
   ],
   controllers: [CardController],

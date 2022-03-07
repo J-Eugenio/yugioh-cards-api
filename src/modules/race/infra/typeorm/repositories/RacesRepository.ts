@@ -28,8 +28,6 @@ class RacesRepository implements IRacesRepository {
   public async createRace(data: ICreateRaceDTO): Promise<Race> {
     const race = this.ormRepository.create(data);
 
-    console.log(race, 'race');
-
     await this.ormRepository.save(race);
 
     return race;

@@ -1,5 +1,5 @@
 import { BadRequestException, Inject } from '@nestjs/common';
-import { IHashProvider } from 'src/shared/hash/interface/IHashProvider';
+import { IHashProvider } from 'src/shared/Utils/hash/interface/IHashProvider';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../infra/typeorm/entities/User';
 import { IUserRepository } from '../../repositories/IUserRepository';

@@ -3,12 +3,13 @@ import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './infra/typeorm/entities/User';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from '../../shared/auth/constants';
-import { BCryptHashProvider } from 'src/shared/hash/implementations/BCryptHashProvider';
+import { jwtConstants } from '../../shared/middleware/auth/constants';
+import { BCryptHashProvider } from 'src/shared/Utils/hash/implementations/BCryptHashProvider';
 import { UserRepository } from './infra/typeorm/repositories/UserRepository';
 import { UserController } from './infra/http/user.controller';
 import { CreateUserUseCase } from './useCase/createUser/CreateUserUseCase';
-import { NestJWTTokenProvider } from 'src/shared/auth/TokenProvider/implementations/NestJWTTokenProvider';
+import { NestJWTTokenProvider } from 'src/shared/middleware/auth/TokenProvider/implementations/NestJWTTokenProvider';
+import { AuthenticateUserUseCase } from './useCase/authenticateUser/authenticateUserUseCase';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { NestJWTTokenProvider } from 'src/shared/auth/TokenProvider/implementati
   controllers: [UserController],
   providers: [
     CreateUserUseCase,
+    AuthenticateUserUseCase,
     {
       provide: 'HashProvider',
       inject: [BCryptHashProvider],

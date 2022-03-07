@@ -5,8 +5,7 @@ class IResponseTokenDTO {
   @ApiProperty({
     description: 'Token do usuário',
     nullable: false,
-    default:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    default: '[JWT_TOKEN]',
   })
   token: string;
   @ApiProperty({
