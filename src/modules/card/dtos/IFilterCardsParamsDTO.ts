@@ -6,4 +6,3 @@ export class IFilterCardsParamsDTO {
   level?: number;
   attribute?: string;
 }
-  

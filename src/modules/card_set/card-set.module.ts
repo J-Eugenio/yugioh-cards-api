@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserRepository } from '../user/infra/typeorm/repositories/UserRepository';
 import { CardsSetsController } from './infra/http/CardsSetsController';
 import { CardSets } from './infra/typeorm/entities/CardSets';
 import { CardsSetsRepository } from './infra/typeorm/repositories/CardsSetsRepository';
 import { CreateCardSetUseCase } from './useCase/createCardSet/CreateCardSetUseCase';
-import { FindBySetByParamsUseCase } from './useCase/findBySetByParams/FindBySetByParamsUseCase';
 import { FindBySetCodeUseCase } from './useCase/findBySetCode/FindBySetCodeUseCase';
 import { FindBySetIdUseCase } from './useCase/findBySetId/FindBySetIdUseCase';
+import { FindBySetRarityUseCase } from './useCase/findBySetRarity/FindBySetRarityUseCase';
 import { FindCardSetsUseCase } from './useCase/findCardSets/FindCardSetsUseCase';
 import { UpdateCardSetUseCase } from './useCase/updateCardSet/UpdateCardSetUseCase';
 
@@ -18,11 +19,16 @@ import { UpdateCardSetUseCase } from './useCase/updateCardSet/UpdateCardSetUseCa
     UpdateCardSetUseCase,
     FindBySetCodeUseCase,
     FindBySetIdUseCase,
-    FindBySetByParamsUseCase,
+    FindBySetRarityUseCase,
     {
       provide: 'CardsSetsRepository',
       inject: [CardsSetsRepository],
       useClass: CardsSetsRepository,
+    },
+    {
+      provide: 'UserRepository',
+      inject: [UserRepository],
+      useClass: UserRepository,
     },
   ],
   controllers: [CardsSetsController],

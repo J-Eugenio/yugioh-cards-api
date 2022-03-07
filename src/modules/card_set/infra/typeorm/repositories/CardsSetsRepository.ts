@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ICreateCardSetsDTO } from 'src/modules/card_set/dtos/ICreateCardSetsDTO';
 import { IUpdateCardSetsDTO } from 'src/modules/card_set/dtos/IUpdateCardSetsDTO';
 import { ICardsSetsRepository } from 'src/modules/card_set/repositories/ICardsSetsRepository';
-import { EntityManager, Repository } from 'typeorm';
+import { EntityManager, ILike, Repository } from 'typeorm';
 import { CardSets } from '../entities/CardSets';
 
 @Injectable()
@@ -20,7 +20,15 @@ class CardsSetsRepository implements ICardsSetsRepository {
   public async findByCode(set_code: string) {
     return await this.ormRepository.findOne({
       where: {
-        set_code,
+        set_code: ILike(`%${set_code}%`),
+      },
+    });
+  }
+
+  public async findByRarity(set_rarity: string) {
+    return await this.ormRepository.find({
+      where: {
+        set_rarity: ILike(`%${set_rarity}%`),
       },
     });
   }
@@ -33,8 +41,9 @@ class CardsSetsRepository implements ICardsSetsRepository {
     });
   }
 
-  public async findByParams({ set_code, set_rarity }): Promise<CardSets[]>{
-    return await this.ormRepository.query(`
+  public async findByParams({ set_code, set_rarity }): Promise<CardSets[]> {
+    return await this.ormRepository.query(
+      `
       SELECT * FROM card_sets cst
       LEFT JOIN sets st ON st.set_code ILIKE cst.set_code
       WHERE
@@ -47,7 +56,9 @@ class CardsSetsRepository implements ICardsSetsRepository {
         THEN cst.set_rarity LIKE $2
         ELSE true
       END
-    `, [set_code, set_rarity])
+    `,
+      [set_code, set_rarity],
+    );
   }
 
   public async createCardSet(data: ICreateCardSetsDTO): Promise<CardSets> {

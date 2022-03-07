@@ -1,12 +1,23 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
+import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { ICreateTypeDTO } from '../../dtos/ICreateTypeDTO';
 import { IUpdateTypeDTO } from '../../dtos/IUpdateTypeDTO';
 import { CreateTypeUseCase } from '../../useCase/createType/CreateTypeUseCase';
@@ -17,6 +28,7 @@ import { Type } from '../typeorm/entities/Type';
 
 @ApiTags('types')
 @Controller('types')
+@ApiSecurity('access-key')
 export class TypesController {
   constructor(
     private readonly findTypesUseCase: FindTypesUseCase,
@@ -25,6 +37,7 @@ export class TypesController {
     private readonly updateTypeUseCase: UpdateTypeUseCase,
   ) {}
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiOkResponse({
     description: 'Todas os tipos recuperados com sucesso!',
     type: [Type],
@@ -34,6 +47,7 @@ export class TypesController {
     return this.findTypesUseCase.execute();
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Tipo recupero por ID',
     type: Set,
@@ -47,6 +61,7 @@ export class TypesController {
     return this.findByIdUseCase.execute(id);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiBody({
     description: 'Informar os dados de cadastro',
     type: ICreateTypeDTO,
@@ -61,6 +76,7 @@ export class TypesController {
     return this.createTypeUseCase.execute(data);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiParam({
     name: 'id',
     description: 'ID do tipo',

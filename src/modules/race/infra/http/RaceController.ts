@@ -1,12 +1,23 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
+import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { ICreateRaceDTO } from '../../dtos/ICreateRaceDTO';
 import { IUpdateRaceDTO } from '../../dtos/IUpdateRaceDTO';
 import { CreateRaceUseCase } from '../../useCase/createRace/CreateRaceUseCase';
@@ -17,6 +28,7 @@ import { Race } from '../typeorm/entities/Race';
 
 @ApiTags('races')
 @Controller('races')
+@ApiSecurity('access-key')
 export class RaceController {
   constructor(
     private readonly findRacesUseCase: FindRacesUseCase,
@@ -25,6 +37,7 @@ export class RaceController {
     private readonly updateRaceUseCase: UpdateRaceUseCase,
   ) {}
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiOkResponse({
     description: 'Todas os tipos recuperados com sucesso!',
     type: [Race],
@@ -34,6 +47,7 @@ export class RaceController {
     return this.findRacesUseCase.execute();
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Raça recupero por ID',
     type: Race,
@@ -47,6 +61,7 @@ export class RaceController {
     return this.findByIdUseCase.execute(id);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiBody({
     description: 'Informar os dados de cadastro',
     type: ICreateRaceDTO,
@@ -61,6 +76,7 @@ export class RaceController {
     return this.createRaceUseCase.execute(data);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiParam({
     name: 'id',
     description: 'ID da Raça',

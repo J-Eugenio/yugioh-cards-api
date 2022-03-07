@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserRepository } from '../user/infra/typeorm/repositories/UserRepository';
 import { SetsController } from './infra/http/SetsController';
 import { Sets } from './infra/typeorm/entities/Set';
 import { SetsRepository } from './infra/typeorm/repositories/SetsRepository';
@@ -21,6 +22,11 @@ import { UpdateSetUseCase } from './useCase/updateSet/UpdateSetUseCase';
       provide: 'SetsRepository',
       inject: [SetsRepository],
       useClass: SetsRepository,
+    },
+    {
+      provide: 'UserRepository',
+      inject: [UserRepository],
+      useClass: UserRepository,
     },
   ],
   controllers: [SetsController],

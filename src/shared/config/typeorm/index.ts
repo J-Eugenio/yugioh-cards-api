@@ -8,11 +8,11 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 49153,
+  port: Number(process.env.DB_PORT) || 5432,
   // port: Number(process.env.DB_PORT) || 5432,
-  database: process.env.DB_NAME || 'ygo',
-  username: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASS || 'acj159753',
+  database: process.env.DB_NAME || 'yugioh',
+  username: process.env.DB_USER || 'root',
+  password: process.env.DB_PASS || 'root',
   logging: false,
   /**
    * @param __dirname

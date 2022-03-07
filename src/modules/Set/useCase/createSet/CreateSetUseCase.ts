@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, NotFoundException } from '@nestjs/common';
+import { Inject } from '@nestjs/common';
 import { ICreateSetsDTO } from '../../dtos/ICreateSetsDTO';
 import { Sets } from '../../infra/typeorm/entities/Set';
 import { ISetsRepository } from '../../repositories/ISetsRepository';

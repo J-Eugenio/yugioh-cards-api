@@ -1,34 +1,47 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
+import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { ICreateCardSetsDTO } from '../../dtos/ICreateCardSetsDTO';
 import { IUpdateCardSetsDTO } from '../../dtos/IUpdateCardSetsDTO';
 import { CreateCardSetUseCase } from '../../useCase/createCardSet/CreateCardSetUseCase';
-import { FindBySetByParamsUseCase } from '../../useCase/findBySetByParams/FindBySetByParamsUseCase';
 import { FindBySetCodeUseCase } from '../../useCase/findBySetCode/FindBySetCodeUseCase';
 import { FindBySetIdUseCase } from '../../useCase/findBySetId/FindBySetIdUseCase';
+import { FindBySetRarityUseCase } from '../../useCase/findBySetRarity/FindBySetRarityUseCase';
 import { FindCardSetsUseCase } from '../../useCase/findCardSets/FindCardSetsUseCase';
 import { UpdateCardSetUseCase } from '../../useCase/updateCardSet/UpdateCardSetUseCase';
 import { CardSets } from '../typeorm/entities/CardSets';
 
 @ApiTags('cardsets')
 @Controller('cardsets')
+@ApiSecurity('access-key')
 export class CardsSetsController {
   constructor(
     private readonly findCardSetsUseCase: FindCardSetsUseCase,
     private readonly findBySetCodeUseCase: FindBySetCodeUseCase,
     private readonly findBySetIdUseCase: FindBySetIdUseCase,
-    private readonly findBySetByParamsUseCase: FindBySetByParamsUseCase,
     private readonly createCardSetUseCase: CreateCardSetUseCase,
     private readonly updateCardSetUseCase: UpdateCardSetUseCase,
+    private readonly findBySetRarityUseCase: FindBySetRarityUseCase,
   ) {}
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiOkResponse({
     description: 'Todas os sets cards recuperadas com sucesso!',
     type: [CardSets],
@@ -38,6 +51,7 @@ export class CardsSetsController {
     return this.findCardSetsUseCase.execute();
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Carta recupera por ID',
     type: CardSets,
@@ -46,11 +60,28 @@ export class CardsSetsController {
     name: 'code',
     description: 'Codigo do card set',
   })
-  @Get('/:code')
+  @Get('/code/:code')
   public async findByCode(@Param('code') code: string): Promise<CardSets> {
-    return this.findBySetCodeUseCase.execute(code);
+    return await this.findBySetCodeUseCase.execute(code);
   }
 
+  @UseGuards(JwtPublicAuthGuard)
+  @ApiResponse({
+    description: 'Card set recupero por raridade',
+    type: CardSets,
+  })
+  @ApiParam({
+    name: 'rarity',
+    description: 'Raridade do card set',
+  })
+  @Get('/rarity/:rarity')
+  public async findByRarity(
+    @Param('rarity') rarity: string,
+  ): Promise<CardSets[]> {
+    return await this.findBySetRarityUseCase.execute(rarity);
+  }
+
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Carta recupera por ID',
     type: CardSets,
@@ -64,13 +95,7 @@ export class CardsSetsController {
     return this.findBySetIdUseCase.execute(id);
   }
 
-  @Get('/params/:id')
-  public async findBySetByParams(
-    @Body() { set_code, set_rarity } : { set_code, set_rarity },
-  ): Promise<CardSets[]> {
-    return this.findBySetByParamsUseCase.execute({ set_code, set_rarity });
-  }
-
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiBody({
     description: 'Informar os dados de cadastro',
     type: ICreateCardSetsDTO,
@@ -87,6 +112,7 @@ export class CardsSetsController {
     return this.createCardSetUseCase.execute(data);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiParam({
     name: 'id',
     description: 'ID da carta',

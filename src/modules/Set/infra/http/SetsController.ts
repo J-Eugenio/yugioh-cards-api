@@ -1,12 +1,23 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBody,
   ApiExcludeEndpoint,
   ApiOkResponse,
   ApiParam,
   ApiResponse,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtPrivateAuthGuard } from 'src/shared/middleware/auth/auth.private.guard';
+import { JwtPublicAuthGuard } from 'src/shared/middleware/auth/auth.public.guard';
 import { ICreateSetsDTO } from '../../dtos/ICreateSetsDTO';
 import { IUpdateSetsDTO } from '../../dtos/IUpdateSetsDTO';
 import { CreateSetUseCase } from '../../useCase/createSet/CreateSetUseCase';
@@ -18,6 +29,7 @@ import { Sets } from '../typeorm/entities/Set';
 
 @ApiTags('set')
 @Controller('set')
+@ApiSecurity('access-key')
 export class SetsController {
   constructor(
     private readonly findSetsUseCase: FindSetsUseCase,
@@ -27,6 +39,7 @@ export class SetsController {
     private readonly updateSetUseCase: UpdateSetUseCase,
   ) {}
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiOkResponse({
     description: 'Todas os sets recuperados com sucesso!',
     type: [Sets],
@@ -36,6 +49,7 @@ export class SetsController {
     return this.findSetsUseCase.execute();
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Set recupero por ID',
     type: Sets,
@@ -49,6 +63,7 @@ export class SetsController {
     return this.findSetByIdUseCase.execute(id);
   }
 
+  @UseGuards(JwtPublicAuthGuard)
   @ApiResponse({
     description: 'Filtra Set por Nome',
     type: Sets,
@@ -58,10 +73,13 @@ export class SetsController {
     description: 'Nome do Set',
   })
   @Get('/:set_name')
-  public async findByName(@Param('set_name') set_name: string): Promise<Sets[]> {
+  public async findByName(
+    @Param('set_name') set_name: string,
+  ): Promise<Sets[]> {
     return this.findBySetNameUseCase.execute(set_name);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiBody({
     description: 'Informar os dados de cadastro',
     type: ICreateSetsDTO,
@@ -76,6 +94,7 @@ export class SetsController {
     return this.createSetUseCase.execute(data);
   }
 
+  @UseGuards(JwtPrivateAuthGuard)
   @ApiParam({
     name: 'id',
     description: 'ID da carta',

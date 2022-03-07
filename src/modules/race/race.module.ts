@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EnsureAuthenticate } from 'src/shared/middleware/auth/';
+import { UserRepository } from '../user/infra/typeorm/repositories/UserRepository';
 import { RaceController } from './infra/http/RaceController';
 import { Race } from './infra/typeorm/entities/Race';
 import { RacesRepository } from './infra/typeorm/repositories/RacesRepository';
@@ -15,10 +17,16 @@ import { UpdateRaceUseCase } from './useCase/updateRace/UpdateRaceUseCase';
     FindRaceByIdUseCase,
     CreateRaceUseCase,
     UpdateRaceUseCase,
+    EnsureAuthenticate,
     {
       provide: 'RacesRepository',
       inject: [RacesRepository],
       useClass: RacesRepository,
+    },
+    {
+      provide: 'UserRepository',
+      inject: [UserRepository],
+      useClass: UserRepository,
     },
   ],
   controllers: [RaceController],
