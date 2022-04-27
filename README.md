@@ -35,6 +35,18 @@
   </div>
   <br>
   <br>
+  
+   ```bash
+    ##INSTALATION
+        Extract Images to /src/shared/images
+        Import DB(Postgres)
+   ```
+  <div>
+    ##DOWNLOADS
+    </br>
+        IMAGES: <li><a href="https://drive.google.com/file/d/1Bx6Ku0ZuWc8rGRpIy4vfGnB7L63MSeuo/view?usp=sharing">Google Drive</a></li>
+        DB: <li><a href="https://drive.google.com/file/d/1JnB_K2WTDdAQ9989_uM1zldaeaqkN3Tp/view?usp=sharing">Google Drive</a></li>
+  </div>
   <div>
     <img src="https://raw.githubusercontent.com/MicaelliMedeiros/micaellimedeiros/master/image/computer-illustration.png" min-width="400px" max-width="400px" width="400px" align="right" alt="Computador iuriCode">
   </div> 
